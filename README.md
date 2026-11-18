@@ -3,7 +3,7 @@
 Ansible modules for the OpenShift **Assisted Installer** API
 (`https://api.openshift.com/api/assisted-install/v2`).
 
-> **Status:** Active development. **4 of 7 Phase 1 modules complete.**  
+> **Status:** Active development. **5 of 7 Phase 1 modules complete.**  
 > See [project board](https://github.com/users/vjayaramrh/projects/2) for progress and [DESIGN.md](DESIGN.md) for scope.
 
 ## Modules Implemented
@@ -14,7 +14,7 @@ Ansible modules for the OpenShift **Assisted Installer** API
 - ✅ `infra_env` - Manage infrastructure environments (state-based, reference implementation)
 - ✅ `host_action` - Host lifecycle actions (bind, unbind, install, reset)
 - 🏗️ `cluster_info` - Query cluster information (next)
-- ⏳ `support_level_info` - Architecture and feature support levels
+- ✅ `support_level_info` - Architecture and feature support levels
 - ⏳ `cluster` - Manage clusters (state-based)
 
 See [docs/api-endpoint-map.md](docs/api-endpoint-map.md) for complete Phase 1 & 2 scope (81 API operations mapped).

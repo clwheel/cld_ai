@@ -35,9 +35,9 @@ Everything not `agent-internal` is a candidate module. Phase per DESIGN.md §3;
 | GET | /v2/openshift-versions | v2ListSupportedOpenshiftVersions | info | `openshift_version_info` | 1 ✅ |
 | GET | /v2/component-versions | v2ListComponentVersions | info | `component_version_info` | backlog |
 | GET | /v2/release-sources | v2ListReleaseSources | info | `release_source_info` | backlog |
-| GET | /v2/support-levels/architectures | GetSupportedArchitectures | info | `support_level_info` (`kind: architectures`) | 1 |
-| GET | /v2/support-levels/features | GetSupportedFeatures | info | `support_level_info` (`kind: features`) | 1 |
-| GET | /v2/support-levels/features/detailed | GetDetailedSupportedFeatures | info | `support_level_info` (`kind: features_detailed`) | 1 |
+| GET | /v2/support-levels/architectures | GetSupportedArchitectures | info | `support_level_info` (`kind: architectures`) | 1 ✅ |
+| GET | /v2/support-levels/features | GetSupportedFeatures | info | `support_level_info` (`kind: features`) | 1 ✅ |
+| GET | /v2/support-levels/features/detailed | GetDetailedSupportedFeatures | info | `support_level_info` (`kind: features_detailed`) | 1 ✅ |
 | GET | /v2/supported-operators | V2ListSupportedOperators | info | `supported_operator_info` | 1 ✅ |
 | GET | /v2/supported-operators/{operator_name} | V2ListOperatorProperties | info | `supported_operator_info` (`name:`) | 1 ✅ |
 | GET | /v2/operators/bundles | V2ListBundles | info | `operator_bundle_info` | backlog |
@@ -178,7 +178,7 @@ deliberately excluded from the collection.
 
 ### Phase rollup (modules to author)
 
-- **Phase 1:** `openshift_version_info` ✅, `support_level_info`,
+- **Phase 1:** `openshift_version_info` ✅, `support_level_info` ✅,
   `supported_operator_info` ✅, `cluster` + `cluster_info`, `infra_env` ✅ + `infra_env_info`,
   `host_action` ✅ (pulled forward from Phase 2 — the reference action module).
 - **Phase 2:** `cluster_action`, `host` + `host_info`,
@@ -190,15 +190,16 @@ deliberately excluded from the collection.
 
 ## Open questions
 
-1. **`support_level_info` shape** — one module with a `kind:` param
-   (`architectures` / `features` / `features_detailed`) vs. three modules?
-2. **Cluster register variants** — are `import` and `disconnected` a mode of
+1. **Cluster register variants** — are `import` and `disconnected` a mode of
    `cluster`, or separate modules?
-3. **`reset-validation`** — action verb (`host_action`) or state-based sub-resource?
+2. **`reset-validation`** — action verb (`host_action`) or state-based sub-resource?
    It is a PATCH, unlike the other POST `/actions/*`.
-4. **UI settings** — confirm out of scope (no operator use case).
+3. **UI settings** — confirm out of scope (no operator use case).
 
 **Resolved:**
+- ~~`support_level_info` shape~~ → Resolved per DESIGN.md §6 (consolidation): one
+  module with a `kind:` param (`architectures` / `features` / `features_detailed`),
+  implemented in `support_level_info`
 - ~~Config sub-resources~~ → Resolved per DESIGN.md §6 (granularity principle): fold into parent modules as parameters
 
 ## How this was generated

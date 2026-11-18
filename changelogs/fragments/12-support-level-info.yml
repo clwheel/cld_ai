@@ -1,0 +1,10 @@
+minor_changes:
+  - support_level_info - new read-only info module covering the three Assisted
+    Installer support-level catalogs via a ``kind`` parameter.
+    ``kind=architectures`` returns the support level per CPU architecture,
+    ``kind=features`` returns the support level per platform feature (optionally
+    scoped by ``cpu_architecture``, ``platform_type`` and ``external_platform_name``),
+    and ``kind=features_detailed`` returns detailed feature and operator support
+    entries including incompatibilities and dependencies. ``openshift_version`` is
+    required for every kind; the module always reports ``changed=false`` and
+    supports check mode (https://github.com/vjayaramrh/cld_ai/issues/12).
